@@ -29,8 +29,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import com.fit2081.quiztracker.data.AuthManager
 import com.fit2081.quiztracker.data.quizAttempts.QuizAttempt
+import com.fit2081.quiztracker.data.quizAttempts.QuizAttemptViewModel
 import com.fit2081.quiztracker.ui.theme.QuizTrackerTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +45,9 @@ class StudentsDashboard : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val quizAttemptViewModel: QuizAttemptViewModel = ViewModelProvider(
+                this, QuizAttemptViewModel.QuizAttemptViewModelFactory(this@StudentsDashboard)
+            )[QuizAttemptViewModel::class.java]
             QuizTrackerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
@@ -124,7 +129,7 @@ class StudentsDashboard : ComponentActivity() {
                                 )
 
                                 CoroutineScope(Dispatchers.IO).launch {
-                                    quizAttemptViewMode.insertQuizAttempt(attempt)
+                                    quizAttemptViewModel.insertQuizAttempt(attempt)
                                 }
 
                                 q1 = false
