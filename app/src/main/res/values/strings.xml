@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QuizTracker</string>
+    <string name="title_activity_students_dashboard">StudentsDashboard</string>
 </resources>
