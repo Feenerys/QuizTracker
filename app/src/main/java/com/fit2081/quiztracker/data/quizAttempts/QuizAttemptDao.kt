@@ -16,6 +16,6 @@ interface QuizAttemptDao {
     fun getAllQuizAttempt(): Flow<List<QuizAttempt>>
 
     // Retrieves all [QuizAttempt]s for a specific student ID
-    @Query("SELECT * FROM quiz_attempts WHERE studentId = :studentID")
-    fun getQuizAttemptsByStudentId(studentId: String): Flow<List<QuizAttempt>>
+    @Query("SELECT * FROM quiz_attempts WHERE studentId = :studentId")
+    fun getQuizAttemptByStudentId(studentId: String): Flow<List<QuizAttempt>>
 }
